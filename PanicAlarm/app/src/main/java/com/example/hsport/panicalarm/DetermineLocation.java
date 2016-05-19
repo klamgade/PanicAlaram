@@ -7,11 +7,14 @@ import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.MediaRecorder;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,6 +23,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DetermineLocation extends FragmentActivity implements OnMapReadyCallback {
 
@@ -64,6 +72,55 @@ public class DetermineLocation extends FragmentActivity implements OnMapReadyCal
             manager.sendTextMessage(no, null, message, null, null);
             Toast.makeText(getApplicationContext(), "Send Succesfully", Toast.LENGTH_LONG).show();
 
+            Intent intent = new Intent(this, SendMMS.class);
+            startActivityForResult(intent, 0);
+            //Record
+            //final MediaRecorder recorder = null;
+
+           // if(recorder != null){
+               // recorder.release();
+            //}
+
+//            final MediaRecorder recorder = new MediaRecorder();
+//            if(recorder != null){
+//                 recorder.release();
+//            }
+//            recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+//            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+//            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB);
+//            recorder.setOutputFile(Environment
+//                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+//                    +"test.3gp");
+//            try {
+//                recorder.prepare();
+//                recorder.start();
+//                //Timer timer = new Timer();
+//
+////                timer.schedule(new TimerTask() {
+////                    public void run() {
+////                        recorder.stop();
+////                        recorder.release();
+////                    }
+////                }, 3000, 3000);
+//            } catch (IOException io) {
+//                Toast.makeText(getApplicationContext(), "Record File", Toast.LENGTH_LONG).show();
+//            }
+//
+//            recorder.stop();
+//            recorder.release();
+//
+//
+//            //Send MMS
+//            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+//            sendIntent.setClassName("com.android.mms", "com.android.mms.ui.ComposeMessageActivity");
+//            sendIntent.putExtra("address", "0211077348");
+//            sendIntent.putExtra("sms_body", "if you are sending text");
+//            final File file1 = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Downloadtest.3gp");
+//            Uri uri = Uri.fromFile(file1);
+//            Log.e("Path", "" + uri);
+//            sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//            sendIntent.setType("video/3gp");
+//            startActivity(sendIntent);
 
         }
 
