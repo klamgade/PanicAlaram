@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PanicAlarm</string>
+    <string name="title_activity_determine_location">Map</string>
+</resources>
